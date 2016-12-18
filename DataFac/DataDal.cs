@@ -39,5 +39,11 @@ namespace DataFac
             conn.SaveChanges();
             return new Tuple<int, List<S_BookType>, object>(1, getBookTypes(),null);
         }
+
+        public List<S_Book> getBooks()
+        {
+            var re = conn.S_Book.ToList();
+            return re;
+        }
     }
 }
