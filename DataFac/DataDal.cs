@@ -29,5 +29,15 @@ namespace DataFac
             conn.SaveChanges();
             return getBookTypes();
         }
+
+        public Tuple<int, List<S_BookType>, object> addBookType(S_BookType model)
+        {
+            var re = conn.S_BookType.Where(t => t.name == model.name).FirstOrDefault();
+            if (re != null)
+                return new Tuple<int, List<S_BookType>, object>(-1, null, "已存在");
+            conn.S_BookType.Add(model);
+            conn.SaveChanges();
+            return new Tuple<int, List<S_BookType>, object>(1, getBookTypes(),null);
+        }
     }
 }
