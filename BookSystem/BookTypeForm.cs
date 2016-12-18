@@ -29,5 +29,20 @@ namespace BookSystem
                 listBox1.Items.Add(item.name);
             }
         }
+
+        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = listBox1.IndexFromPoint(e.Location);
+            if (index != ListBox.NoMatches)
+            {
+                var list = dal.delBookType(listBox1.Items[index].ToString());
+                listBox1.Items.Clear();
+                foreach (var item in list)
+                {
+                    listBox1.Items.Add(item.name);
+                }
+                MessageBox.Show("删除成功");
+            }
+        }
     }
 }

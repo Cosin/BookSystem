@@ -21,5 +21,13 @@ namespace DataFac
             var re = conn.S_BookType.ToList();
             return re;
         }
+
+        public List<S_BookType> delBookType(string name)
+        {
+            var re = conn.S_BookType.Where(t => t.name == name).FirstOrDefault();
+            conn.S_BookType.Remove(re);
+            conn.SaveChanges();
+            return getBookTypes();
+        }
     }
 }
