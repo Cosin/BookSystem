@@ -41,6 +41,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.书籍类型ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -61,7 +62,8 @@
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.添加书籍ToolStripMenuItem,
-            this.添加新借阅ToolStripMenuItem});
+            this.添加新借阅ToolStripMenuItem,
+            this.书籍类型ToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(44, 21);
             this.toolStripMenuItem1.Text = "功能";
@@ -159,6 +161,13 @@
             this.columnHeader3.Text = "作者";
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // 书籍类型ToolStripMenuItem
+            // 
+            this.书籍类型ToolStripMenuItem.Name = "书籍类型ToolStripMenuItem";
+            this.书籍类型ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.书籍类型ToolStripMenuItem.Text = "书籍类型";
+            this.书籍类型ToolStripMenuItem.Click += new System.EventHandler(this.书籍类型ToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -194,5 +203,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ToolStripMenuItem 书籍类型ToolStripMenuItem;
     }
 }

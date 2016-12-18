@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="bookdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="bookdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="S_Admin">
           <Key>
             <PropertyRef Name="id" />
@@ -12,6 +12,22 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="pwd" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="S_Book">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="author" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="type_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="S_BookType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="S_Person">
           <Key>
@@ -29,6 +45,18 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_S_Book_S_BookType">
+          <End Role="S_BookType" Type="Self.S_BookType" Multiplicity="1" />
+          <End Role="S_Book" Type="Self.S_Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_BookType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="S_Book">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_S_Person_S_Power">
           <End Role="S_Power" Type="Self.S_Power" Multiplicity="1" />
           <End Role="S_Person" Type="Self.S_Person" Multiplicity="*" />
@@ -43,15 +71,20 @@
         </Association>
         <EntityContainer Name="bookdbModelStoreContainer">
           <EntitySet Name="S_Admin" EntityType="Self.S_Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_Book" EntityType="Self.S_Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_BookType" EntityType="Self.S_BookType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="S_Person" EntityType="Self.S_Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="S_Power" EntityType="Self.S_Power" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_S_Book_S_BookType" Association="Self.FK_S_Book_S_BookType">
+            <End Role="S_BookType" EntitySet="S_BookType" />
+            <End Role="S_Book" EntitySet="S_Book" />
+          </AssociationSet>
           <AssociationSet Name="FK_S_Person_S_Power" Association="Self.FK_S_Person_S_Power">
             <End Role="S_Power" EntitySet="S_Power" />
             <End Role="S_Person" EntitySet="S_Person" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="bookdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -101,8 +134,44 @@
             <End Role="S_Power" EntitySet="S_Power" />
             <End Role="S_Person" EntitySet="S_Person" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          <EntitySet Name="S_Book" EntityType="bookdbModel.S_Book" />
+          <EntitySet Name="S_BookType" EntityType="bookdbModel.S_BookType" />
+          <AssociationSet Name="FK_S_Book_S_BookType" Association="bookdbModel.FK_S_Book_S_BookType">
+            <End Role="S_BookType" EntitySet="S_BookType" />
+            <End Role="S_Book" EntitySet="S_Book" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="S_Book">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="author" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="type_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="S_BookType" Relationship="bookdbModel.FK_S_Book_S_BookType" FromRole="S_Book" ToRole="S_BookType" />
+        </EntityType>
+        <EntityType Name="S_BookType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="S_Book" Relationship="bookdbModel.FK_S_Book_S_BookType" FromRole="S_BookType" ToRole="S_Book" />
+        </EntityType>
+        <Association Name="FK_S_Book_S_BookType">
+          <End Type="bookdbModel.S_BookType" Role="S_BookType" Multiplicity="1" />
+          <End Type="bookdbModel.S_Book" Role="S_Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_BookType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="S_Book">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -132,6 +201,24 @@
               <MappingFragment StoreEntitySet="S_Power">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_Book">
+            <EntityTypeMapping TypeName="bookdbModel.S_Book">
+              <MappingFragment StoreEntitySet="S_Book">
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_BookType">
+            <EntityTypeMapping TypeName="bookdbModel.S_BookType">
+              <MappingFragment StoreEntitySet="S_BookType">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

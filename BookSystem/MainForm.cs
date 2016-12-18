@@ -22,5 +22,9 @@ namespace BookSystem
             MessageBox.Show("Powered By Hm");
         }
 
+        private void 书籍类型ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new BookTypeForm().Show();
+        }
     }
 }

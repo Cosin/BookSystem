@@ -28,5 +28,7 @@ namespace DataFac
         public virtual DbSet<S_Admin> S_Admin { get; set; }
         public virtual DbSet<S_Person> S_Person { get; set; }
         public virtual DbSet<S_Power> S_Power { get; set; }
+        public virtual DbSet<S_Book> S_Book { get; set; }
+        public virtual DbSet<S_BookType> S_BookType { get; set; }
     }
 }

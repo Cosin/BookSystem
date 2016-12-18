@@ -15,5 +15,11 @@ namespace DataFac
             var re = conn.S_Admin.Where(u => u.name == user && u.pwd == pwd).FirstOrDefault();
             return re == null ? false : true;
         }
+
+        public List<S_BookType> getBookTypes()
+        {
+            var re = conn.S_BookType.ToList();
+            return re;
+        }
     }
 }

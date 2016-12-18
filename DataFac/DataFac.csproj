@@ -71,6 +71,12 @@
     <Compile Include="S_Admin.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="S_Book.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="S_BookType.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="S_Person.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
