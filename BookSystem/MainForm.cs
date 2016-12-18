@@ -17,5 +17,10 @@ namespace BookSystem
             InitializeComponent();
         }
 
+        private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Powered By Hm");
+        }
+
     }
 }
