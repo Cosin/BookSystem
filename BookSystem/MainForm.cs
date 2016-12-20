@@ -42,5 +42,10 @@ namespace BookSystem
         {
             new BookShelfForm().Show();
         }
+
+        private void 添加书籍ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AddBookForm(this).Show();
+        }
     }
 }

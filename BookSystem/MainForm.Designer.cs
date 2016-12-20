@@ -33,6 +33,7 @@
             this.添加书籍ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.添加新借阅ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.书籍类型ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.书架信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -43,7 +44,6 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.书架信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -76,6 +76,7 @@
             this.添加书籍ToolStripMenuItem.Name = "添加书籍ToolStripMenuItem";
             this.添加书籍ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.添加书籍ToolStripMenuItem.Text = "添加新书籍";
+            this.添加书籍ToolStripMenuItem.Click += new System.EventHandler(this.添加书籍ToolStripMenuItem_Click);
             // 
             // 添加新借阅ToolStripMenuItem
             // 
@@ -89,6 +90,13 @@
             this.书籍类型ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.书籍类型ToolStripMenuItem.Text = "书籍类型";
             this.书籍类型ToolStripMenuItem.Click += new System.EventHandler(this.书籍类型ToolStripMenuItem_Click);
+            // 
+            // 书架信息ToolStripMenuItem
+            // 
+            this.书架信息ToolStripMenuItem.Name = "书架信息ToolStripMenuItem";
+            this.书架信息ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.书架信息ToolStripMenuItem.Text = "书架信息";
+            this.书架信息ToolStripMenuItem.Click += new System.EventHandler(this.书架信息ToolStripMenuItem_Click);
             // 
             // 帮助ToolStripMenuItem
             // 
@@ -179,13 +187,6 @@
             this.tabPage2.Text = "借阅记录";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // 书架信息ToolStripMenuItem
-            // 
-            this.书架信息ToolStripMenuItem.Name = "书架信息ToolStripMenuItem";
-            this.书架信息ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.书架信息ToolStripMenuItem.Text = "书架信息";
-            this.书架信息ToolStripMenuItem.Click += new System.EventHandler(this.书架信息ToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -218,7 +219,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 添加书籍ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 添加新借阅ToolStripMenuItem;
-        private System.Windows.Forms.ListView book_lv;
+        public System.Windows.Forms.ListView book_lv;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;

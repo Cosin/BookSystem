@@ -64,6 +64,16 @@ namespace DataFac
             return new Tuple<int, List<S_BookShelf>, object>(1, getBookShelfs(), null);
         }
 
+        public Tuple<int, List<S_Book>, object> addBook(S_Book model)
+        {
+            var re = conn.S_Book.Where(t => t.name == model.name).FirstOrDefault();
+            if (re != null)
+                return new Tuple<int, List<S_Book>, object>(-1, null, "已存在");
+            conn.S_Book.Add(model);
+            conn.SaveChanges();
+            return new Tuple<int, List<S_Book>, object>(1, getBooks(), null);
+        }
+
         public List<S_Book> getBooks()
         {
             var re = conn.S_Book.ToList();
