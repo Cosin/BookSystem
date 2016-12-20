@@ -41,8 +41,9 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.书架信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -64,7 +65,8 @@
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.添加书籍ToolStripMenuItem,
             this.添加新借阅ToolStripMenuItem,
-            this.书籍类型ToolStripMenuItem});
+            this.书籍类型ToolStripMenuItem,
+            this.书架信息ToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(44, 21);
             this.toolStripMenuItem1.Text = "功能";
@@ -161,6 +163,12 @@
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader3.Width = 100;
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "类型";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader4.Width = 100;
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -171,11 +179,12 @@
             this.tabPage2.Text = "借阅记录";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // columnHeader4
+            // 书架信息ToolStripMenuItem
             // 
-            this.columnHeader4.Text = "类型";
-            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader4.Width = 100;
+            this.书架信息ToolStripMenuItem.Name = "书架信息ToolStripMenuItem";
+            this.书架信息ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.书架信息ToolStripMenuItem.Text = "书架信息";
+            this.书架信息ToolStripMenuItem.Click += new System.EventHandler(this.书架信息ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -215,5 +224,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ToolStripMenuItem 书籍类型ToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ToolStripMenuItem 书架信息ToolStripMenuItem;
     }
 }

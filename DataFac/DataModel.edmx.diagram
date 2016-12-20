@@ -12,6 +12,8 @@
         <EntityTypeShape EntityType="bookdbModel.S_Book" Width="1.5" PointX="5.625" PointY="3.875" />
         <EntityTypeShape EntityType="bookdbModel.S_BookType" Width="1.5" PointX="3.375" PointY="4.125" />
         <AssociationConnector Association="bookdbModel.FK_S_Book_S_BookType" />
+        <EntityTypeShape EntityType="bookdbModel.S_BookShelf" Width="1.5" PointX="3.375" PointY="7.25" />
+        <AssociationConnector Association="bookdbModel.FK_S_Book_S_BookShelf" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

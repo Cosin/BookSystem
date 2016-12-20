@@ -12,15 +12,18 @@ namespace DataFac
     using System;
     using System.Collections.Generic;
     
-    public partial class S_Book
+    public partial class S_BookShelf
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public S_BookShelf()
+        {
+            this.S_Book = new HashSet<S_Book>();
+        }
+    
         public int id { get; set; }
         public string name { get; set; }
-        public string author { get; set; }
-        public int type_id { get; set; }
-        public int shelf_id { get; set; }
     
-        public virtual S_BookType S_BookType { get; set; }
-        public virtual S_BookShelf S_BookShelf { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<S_Book> S_Book { get; set; }
     }
 }

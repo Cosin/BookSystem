@@ -22,12 +22,26 @@ namespace DataFac
             return re;
         }
 
+        public List<S_BookShelf> getBookShelfs()
+        {
+            var re = conn.S_BookShelf.ToList();
+            return re;
+        }
+
         public List<S_BookType> delBookType(string name)
         {
             var re = conn.S_BookType.Where(t => t.name == name).FirstOrDefault();
             conn.S_BookType.Remove(re);
             conn.SaveChanges();
             return getBookTypes();
+        }
+
+        public List<S_BookShelf> delBookShelf(string name)
+        {
+            var re = conn.S_BookShelf.Where(t => t.name == name).FirstOrDefault();
+            conn.S_BookShelf.Remove(re);
+            conn.SaveChanges();
+            return getBookShelfs();
         }
 
         public Tuple<int, List<S_BookType>, object> addBookType(S_BookType model)
@@ -40,10 +54,22 @@ namespace DataFac
             return new Tuple<int, List<S_BookType>, object>(1, getBookTypes(),null);
         }
 
+        public Tuple<int, List<S_BookShelf>, object> addBookShelf(S_BookShelf model)
+        {
+            var re = conn.S_BookShelf.Where(t => t.name == model.name).FirstOrDefault();
+            if (re != null)
+                return new Tuple<int, List<S_BookShelf>, object>(-1, null, "已存在");
+            conn.S_BookShelf.Add(model);
+            conn.SaveChanges();
+            return new Tuple<int, List<S_BookShelf>, object>(1, getBookShelfs(), null);
+        }
+
         public List<S_Book> getBooks()
         {
             var re = conn.S_Book.ToList();
             return re;
         }
+
+
     }
 }

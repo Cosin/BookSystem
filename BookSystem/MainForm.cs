@@ -37,5 +37,10 @@ namespace BookSystem
                 book_lv.Items.Add(new ListViewItem(new string[] { item.id.ToString(), item.name,item.author, item.S_BookType.name }));
             }
         }
+
+        private void 书架信息ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new BookShelfForm().Show();
+        }
     }
 }

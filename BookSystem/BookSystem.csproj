@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookShelfForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookShelfForm.Designer.cs">
+      <DependentUpon>BookShelfForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BookTypeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BookShelfForm.resx">
+      <DependentUpon>BookShelfForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BookTypeForm.resx">
       <DependentUpon>BookTypeForm.cs</DependentUpon>
     </EmbeddedResource>
