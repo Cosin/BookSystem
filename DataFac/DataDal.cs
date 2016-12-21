@@ -34,6 +34,12 @@ namespace DataFac
             return re;
         }
 
+        public List<S_Person> getPersons()
+        {
+            var re = conn.S_Person.ToList();
+            return re;
+        }
+
         public List<S_BookType> delBookType(string name)
         {
             var re = conn.S_BookType.Where(t => t.name == name).FirstOrDefault();
@@ -78,6 +84,13 @@ namespace DataFac
             conn.S_Book.Add(model);
             conn.SaveChanges();
             return new Tuple<int, List<S_Book>, object>(1, getBooks(), null);
+        }
+
+        public Tuple<int, List<S_Record>, object> addRecord(S_Record model)
+        {
+            conn.S_Record.Add(model);
+            conn.SaveChanges();
+            return new Tuple<int, List<S_Record>, object>(1, getRecords(), null);
         }
 
         public List<S_Book> getBooks()

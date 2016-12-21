@@ -89,6 +89,7 @@
             this.添加新借阅ToolStripMenuItem.Name = "添加新借阅ToolStripMenuItem";
             this.添加新借阅ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.添加新借阅ToolStripMenuItem.Text = "添加新借阅";
+            this.添加新借阅ToolStripMenuItem.Click += new System.EventHandler(this.添加新借阅ToolStripMenuItem_Click);
             // 
             // 书籍类型ToolStripMenuItem
             // 

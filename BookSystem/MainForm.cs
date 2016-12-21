@@ -52,5 +52,10 @@ namespace BookSystem
         {
             new AddBookForm(this).Show();
         }
+
+        private void 添加新借阅ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AddRecordForm(this).Show();
+        }
     }
 }
