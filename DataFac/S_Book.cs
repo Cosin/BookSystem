@@ -14,6 +14,12 @@ namespace DataFac
     
     public partial class S_Book
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public S_Book()
+        {
+            this.S_Record = new HashSet<S_Record>();
+        }
+    
         public int id { get; set; }
         public string name { get; set; }
         public string author { get; set; }
@@ -22,5 +28,7 @@ namespace DataFac
     
         public virtual S_BookType S_BookType { get; set; }
         public virtual S_BookShelf S_BookShelf { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<S_Record> S_Record { get; set; }
     }
 }

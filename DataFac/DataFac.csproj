@@ -86,6 +86,9 @@
     <Compile Include="S_Power.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="S_Record.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="DataModel.edmx">

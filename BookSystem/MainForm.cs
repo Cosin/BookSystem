@@ -32,9 +32,14 @@ namespace BookSystem
         private void MainForm_Load(object sender, EventArgs e)
         {
             var book_list = dal.getBooks();
+            var record_list = dal.getRecords();
             foreach(var item in book_list)
             {
                 book_lv.Items.Add(new ListViewItem(new string[] { item.id.ToString(), item.name,item.author, item.S_BookType.name }));
+            }
+            foreach (var item in record_list)
+            {
+                listView1.Items.Add(new ListViewItem(new string[] { item.id.ToString(), item.S_Book.name, item.S_Person.name, item.dtime.ToString() }));
             }
         }
 

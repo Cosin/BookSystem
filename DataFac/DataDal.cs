@@ -28,6 +28,12 @@ namespace DataFac
             return re;
         }
 
+        public List<S_Record> getRecords()
+        {
+            var re = conn.S_Record.ToList();
+            return re;
+        }
+
         public List<S_BookType> delBookType(string name)
         {
             var re = conn.S_BookType.Where(t => t.name == name).FirstOrDefault();

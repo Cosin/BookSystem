@@ -53,6 +53,15 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="S_Record">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dtime" Type="datetime" Nullable="false" />
+          <Property Name="reader_id" Type="int" Nullable="false" />
+          <Property Name="book_id" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_S_Book_S_BookShelf">
           <End Role="S_BookShelf" Type="Self.S_BookShelf" Multiplicity="1" />
           <End Role="S_Book" Type="Self.S_Book" Multiplicity="*" />
@@ -89,6 +98,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FOR_BOOK">
+          <End Role="S_Book" Type="Self.S_Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="S_Record" Type="Self.S_Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Book">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="S_Record">
+              <PropertyRef Name="book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FOR_READER">
+          <End Role="S_Person" Type="Self.S_Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="S_Record" Type="Self.S_Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Person">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="S_Record">
+              <PropertyRef Name="reader_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="bookdbModelStoreContainer">
           <EntitySet Name="S_Admin" EntityType="Self.S_Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="S_Book" EntityType="Self.S_Book" Schema="dbo" store:Type="Tables" />
@@ -96,6 +133,7 @@
           <EntitySet Name="S_BookType" EntityType="Self.S_BookType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="S_Person" EntityType="Self.S_Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="S_Power" EntityType="Self.S_Power" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_Record" EntityType="Self.S_Record" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_S_Book_S_BookShelf" Association="Self.FK_S_Book_S_BookShelf">
             <End Role="S_BookShelf" EntitySet="S_BookShelf" />
             <End Role="S_Book" EntitySet="S_Book" />
@@ -107,6 +145,14 @@
           <AssociationSet Name="FK_S_Person_S_Power" Association="Self.FK_S_Person_S_Power">
             <End Role="S_Power" EntitySet="S_Power" />
             <End Role="S_Person" EntitySet="S_Person" />
+          </AssociationSet>
+          <AssociationSet Name="FOR_BOOK" Association="Self.FOR_BOOK">
+            <End Role="S_Book" EntitySet="S_Book" />
+            <End Role="S_Record" EntitySet="S_Record" />
+          </AssociationSet>
+          <AssociationSet Name="FOR_READER" Association="Self.FOR_READER">
+            <End Role="S_Person" EntitySet="S_Person" />
+            <End Role="S_Record" EntitySet="S_Record" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -130,6 +176,7 @@
           <Property Name="phone" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="power_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="S_Power" Relationship="Self.FK_S_Person_S_Power" FromRole="S_Person" ToRole="S_Power" />
+          <NavigationProperty Name="S_Record" Relationship="bookdbModel.FOR_READER" FromRole="S_Person" ToRole="S_Record" />
         </EntityType>
         <EntityType Name="S_Power">
           <Key>
@@ -170,6 +217,15 @@
             <End Role="S_BookShelf" EntitySet="S_BookShelf" />
             <End Role="S_Book" EntitySet="S_Book" />
           </AssociationSet>
+          <EntitySet Name="S_Record" EntityType="bookdbModel.S_Record" />
+          <AssociationSet Name="FOR_BOOK" Association="bookdbModel.FOR_BOOK">
+            <End Role="S_Book" EntitySet="S_Book" />
+            <End Role="S_Record" EntitySet="S_Record" />
+          </AssociationSet>
+          <AssociationSet Name="FOR_READER" Association="bookdbModel.FOR_READER">
+            <End Role="S_Person" EntitySet="S_Person" />
+            <End Role="S_Record" EntitySet="S_Record" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="S_Book">
           <Key>
@@ -182,6 +238,7 @@
           <NavigationProperty Name="S_BookType" Relationship="bookdbModel.FK_S_Book_S_BookType" FromRole="S_Book" ToRole="S_BookType" />
           <Property Name="shelf_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="S_BookShelf" Relationship="bookdbModel.FK_S_Book_S_BookShelf" FromRole="S_Book" ToRole="S_BookShelf" />
+          <NavigationProperty Name="S_Record" Relationship="bookdbModel.FOR_BOOK" FromRole="S_Book" ToRole="S_Record" />
         </EntityType>
         <EntityType Name="S_BookType">
           <Key>
@@ -220,6 +277,45 @@
             </Principal>
             <Dependent Role="S_Book">
               <PropertyRef Name="shelf_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="S_Record">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dtime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="reader_id" Type="Int32" Nullable="false" />
+          <Property Name="book_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="S_Book" Relationship="bookdbModel.FOR_BOOK" FromRole="S_Record" ToRole="S_Book" />
+          <NavigationProperty Name="S_Person" Relationship="bookdbModel.FOR_READER" FromRole="S_Record" ToRole="S_Person" />
+        </EntityType>
+        <Association Name="FOR_BOOK">
+          <End Type="bookdbModel.S_Book" Role="S_Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="bookdbModel.S_Record" Role="S_Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Book">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="S_Record">
+              <PropertyRef Name="book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FOR_READER">
+          <End Type="bookdbModel.S_Person" Role="S_Person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="bookdbModel.S_Record" Role="S_Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="S_Person">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="S_Record">
+              <PropertyRef Name="reader_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -279,6 +375,16 @@
             <EntityTypeMapping TypeName="bookdbModel.S_BookShelf">
               <MappingFragment StoreEntitySet="S_BookShelf">
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_Record">
+            <EntityTypeMapping TypeName="bookdbModel.S_Record">
+              <MappingFragment StoreEntitySet="S_Record">
+                <ScalarProperty Name="book_id" ColumnName="book_id" />
+                <ScalarProperty Name="reader_id" ColumnName="reader_id" />
+                <ScalarProperty Name="dtime" ColumnName="dtime" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

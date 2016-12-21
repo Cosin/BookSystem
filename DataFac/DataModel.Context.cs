@@ -31,5 +31,6 @@ namespace DataFac
         public virtual DbSet<S_Book> S_Book { get; set; }
         public virtual DbSet<S_BookType> S_BookType { get; set; }
         public virtual DbSet<S_BookShelf> S_BookShelf { get; set; }
+        public virtual DbSet<S_Record> S_Record { get; set; }
     }
 }
